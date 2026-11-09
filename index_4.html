@@ -1,0 +1,574 @@
+<!doctype html><html lang="mn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px/1.4 system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>TOPIK 53 бичих бэлтгэл</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: exam-booklet column — expression bank, picker, the chart sheet + lined answer paper with a 200–300 counter, then the feedback sheet. */
+:root{
+  /* calm reading palette: soft white, near-black, one red accent */
+  --paper:#f7f7f5; --sheet:#ffffff; --ink:#1e1e1e; --muted:#636363; --rule:#e3e3e0; --box:#f3f3f1;
+  --omr:#c0392b; --omr-soft:#fbecea; --good:#1e1e1e; --good-soft:#efefec; --warn:#b03026; --warn-soft:#f3f3f1; --bad:#b03026; --bad-soft:#fbecea;
+  --s1:#1e1e1e; --s2:#c0392b; --s3:#8d8d8d; --s4:#c9c9c6; --s5:#e59a92; --s6:#555555;
+  --f-word:"Gowun Batang","Noto Serif KR",serif;
+  --f-body:"Noto Sans KR",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#141414; --sheet:#1c1c1c; --ink:#e8e8e6; --muted:#a3a3a0; --rule:#2f2f2f; --box:#232323;
+  --omr:#ec6b5e; --omr-soft:#3a201d; --good:#e8e8e6; --good-soft:#262626; --warn:#ec6b5e; --warn-soft:#242424; --bad:#ec6b5e; --bad-soft:#3a201d;
+  --s1:#e8e8e6; --s2:#ec6b5e; --s3:#8a8a88; --s4:#565654; --s5:#f2a99f; --s6:#bdbdbb; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#141414; --sheet:#1c1c1c; --ink:#e8e8e6; --muted:#a3a3a0; --rule:#2f2f2f; --box:#232323;
+  --omr:#ec6b5e; --omr-soft:#3a201d; --good:#e8e8e6; --good-soft:#262626; --warn:#ec6b5e; --warn-soft:#242424; --bad:#ec6b5e; --bad-soft:#3a201d;
+  --s1:#e8e8e6; --s2:#ec6b5e; --s3:#8a8a88; --s4:#565654; --s5:#f2a99f; --s6:#bdbdbb; color-scheme:dark}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.75;-webkit-font-smoothing:antialiased;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px}
+.wrap{max-width:820px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+header{display:flex;flex-direction:column;gap:4px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--omr)}
+h1{font-family:var(--f-word);font-size:clamp(26px,6vw,36px);line-height:1.2;margin:0;text-wrap:balance}
+h2{font-family:var(--f-word);font-size:22px;margin:0;line-height:1.3;text-wrap:balance;word-break:keep-all}
+h3{font-size:14px;margin:0;color:var(--muted);letter-spacing:.04em}
+.sub{color:var(--muted);margin:0;font-size:15px;max-width:65ch}
+.sheet{background:var(--sheet);border:1px solid var(--rule);border-radius:10px;padding:22px clamp(16px,4vw,28px);display:flex;flex-direction:column;gap:16px;min-width:0}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.between{justify-content:space-between}
+.note{font-size:13px;color:var(--muted)}
+.label{font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--muted)}
+:focus-visible{outline:2px solid var(--omr);outline-offset:2px}
+.btn{appearance:none;border:0;background:var(--ink);color:var(--sheet);font:inherit;font-weight:700;padding:11px 18px;border-radius:8px;cursor:pointer;font-size:15px}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--rule)}
+.btn.small{padding:7px 12px;font-size:14px}
+.btn:disabled{opacity:.4;cursor:default}
+.inp{font:inherit;padding:9px 12px;border:1px solid var(--rule);border-radius:8px;background:var(--sheet);color:var(--ink);min-width:0;max-width:100%;box-sizing:border-box}
+.inp.err{border-color:var(--bad);background:var(--bad-soft)}
+/* memorize templates */
+.slot{color:var(--omr);font-weight:700;background:var(--omr-soft);border-radius:4px;padding:0 4px;white-space:nowrap}
+.fill{border-bottom:2px solid var(--omr);font-weight:700}
+.tplgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:820px){.tplgrid{grid-template-columns:1fr}}
+.tcard{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;min-width:0;background:var(--sheet)}
+.tcard .th{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.tcard .tn{font-weight:700;font-size:15px}
+.tcard .tu{font-size:12.5px;color:var(--muted)}
+.tcard .fr{font-size:16.5px;line-height:1.95;word-break:keep-all;overflow-wrap:anywhere;padding:10px 12px;background:var(--box);border-radius:8px;cursor:default;transition:filter .2s ease}
+.tcard .mn{font-size:13.5px;color:var(--muted)}
+.tcard .ex{font-size:14.5px;line-height:1.85;word-break:keep-all;overflow-wrap:anywhere}
+.tcard .ex::before{content:"Жишээ: ";font-size:12px;font-weight:700;color:var(--muted)}
+.tcard .cbtn{align-self:flex-start;appearance:none;font:inherit;font-size:13px;font-weight:700;border:1px solid var(--rule);background:transparent;color:var(--ink);border-radius:999px;padding:5px 12px;cursor:pointer}
+.tcard .cbtn:hover{border-color:var(--omr)}
+#tpl.quiz .tcard .fr{filter:blur(6px);cursor:pointer;user-select:none}
+#tpl.quiz .tcard .fr.show{filter:none}
+#tpl.quiz .tcard .ex{display:none}
+#tplQuiz[aria-pressed="true"]{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
+details.tplcombo>summary{cursor:pointer;font-weight:700;font-size:15px}
+.combo{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.combo .seg{grid-template-columns:7em minmax(0,1fr)}
+/* expression bank */
+details.bank>summary{cursor:pointer;font-weight:700}
+.bankgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin-top:14px}
+.bankbox{border:1px solid var(--rule);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.bankbox ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}
+.bankbox li{font-size:14px;overflow-wrap:anywhere}
+.bankbox li b{font-weight:700}
+.bankbox li span{color:var(--muted);font-size:13px}
+/* picker */
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tab{appearance:none;border:1px solid var(--rule);background:transparent;color:var(--ink);font:inherit;font-size:14px;padding:7px 14px;border-radius:999px;cursor:pointer}
+.tab[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--sheet)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px}
+.qbtn{appearance:none;text-align:left;border:1px solid var(--rule);background:var(--sheet);color:var(--ink);font:inherit;border-radius:8px;padding:8px 10px;cursor:pointer;display:flex;flex-direction:column;gap:2px;min-width:0}
+.qbtn:hover{border-color:var(--omr)}
+.qbtn[aria-current="true"]{border-color:var(--omr);box-shadow:inset 0 0 0 1px var(--omr)}
+.qbtn .k{font-family:var(--f-mono);font-size:11px;color:var(--muted);display:flex;justify-content:space-between;gap:6px}
+.qbtn .t{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.qbtn .st{color:var(--good);font-weight:700}
+.qbtn .st.wip{color:var(--warn)}
+.namerow{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 12px;align-items:center}
+.namerow .note{grid-column:1/-1}
+/* question */
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;background:var(--omr-soft);color:var(--omr)}
+.tag.g{background:var(--box);color:var(--muted);border:1px solid var(--rule)}
+.inst{font-size:15px;margin:0;word-break:keep-all;overflow-wrap:anywhere}
+.inst b{color:var(--omr)}
+.fig{border:1px solid var(--rule);border-radius:14px;padding:16px;background:var(--box);display:flex;flex-direction:column;gap:12px}
+.fig .meta{font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 16px}
+.panels{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.panel{background:var(--sheet);border:1px solid var(--rule);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.panel .pt{font-weight:700;font-size:14px;text-align:center;word-break:keep-all}
+.hb{display:grid;grid-template-columns:minmax(0,7.5em) minmax(0,1fr) 3.4em;gap:6px 8px;align-items:center;font-size:13px}
+.hb .l{word-break:keep-all;overflow-wrap:anywhere;line-height:1.3}
+.hb .tr{height:14px;background:var(--box);border-radius:3px;overflow:hidden}
+.hb .tr i{display:block;height:100%;background:var(--s1);border-radius:3px}
+.hb .v{font-family:var(--f-mono);font-size:12px;text-align:right}
+.gb{display:flex;flex-direction:column;gap:9px;font-size:13px}
+.gb .cat{font-weight:500;word-break:keep-all}
+.gb .bars{display:flex;flex-direction:column;gap:3px}
+.gb .b{display:grid;grid-template-columns:minmax(0,1fr) 3.4em;gap:8px;align-items:center}
+.gb .b i{display:block;height:12px;border-radius:3px}
+.gb .b span{font-family:var(--f-mono);font-size:12px;text-align:right}
+.legend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12.5px;justify-content:center}
+.legend span{display:inline-flex;gap:5px;align-items:center}
+.legend i{width:11px;height:11px;border-radius:2px;display:inline-block}
+.pie{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;align-items:center}
+.pie svg{width:110px;height:110px}
+.pie ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px;font-size:13px}
+.pie li{display:grid;grid-template-columns:12px minmax(0,1fr) auto;gap:6px;align-items:center}
+.pie li i{width:11px;height:11px;border-radius:2px}
+.pie li b{font-family:var(--f-mono);font-weight:500;font-size:12px}
+.line svg{width:100%;height:auto;display:block}
+.plist{margin:0;padding-left:1.1em;font-size:14px;display:flex;flex-direction:column;gap:3px}
+.ptab{border-collapse:collapse;width:100%;font-size:13.5px}
+.ptab th,.ptab td{border:1px solid var(--rule);padding:6px 8px;text-align:center;word-break:keep-all;vertical-align:middle}
+.ptab th{background:var(--box);font-weight:700}
+/* writing paper */
+.paperwrap{display:flex;flex-direction:column;gap:8px}
+textarea.paper{font:inherit;font-size:18px;line-height:2.1;letter-spacing:.01em;width:100%;box-sizing:border-box;min-height:300px;resize:vertical;border:1px solid var(--rule);border-radius:10px;padding:6px 14px;color:var(--ink);
+  background-color:var(--sheet);background-image:repeating-linear-gradient(to bottom,transparent 0,transparent calc(2.1em - 1px),var(--rule) calc(2.1em - 1px),var(--rule) 2.1em);background-attachment:local;background-position:0 6px}
+textarea.paper:focus{outline:none;border-color:var(--ink)}
+.meter{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center}
+.mtrack{position:relative;height:10px;background:var(--box);border:1px solid var(--rule);border-radius:6px;overflow:hidden}
+.mtrack i{position:absolute;inset:0 auto 0 0;background:var(--s3);border-radius:6px}
+.mtrack i.ok{background:var(--ink)}
+.mtrack i.over{background:var(--omr)}
+.mtrack::after{content:"";position:absolute;left:66.6%;top:0;bottom:0;border-left:2px dashed var(--muted)}
+.mcount{font-family:var(--f-mono);font-size:13px;font-variant-numeric:tabular-nums}
+.tipzone{display:flex;flex-direction:column;gap:10px}
+.tiplist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.tiplist li{background:var(--box);border-left:3px solid var(--omr);border-radius:4px 8px 8px 4px;padding:10px 14px;font-size:15px;overflow-wrap:anywhere}
+.tiplist li b{color:var(--warn)}
+.tiplist .ko{font-family:var(--f-body);font-weight:500}
+/* feedback */
+.chk{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.chk li{font-size:14px;padding:6px 10px;border-radius:6px}
+.chk li.warn{background:var(--box);color:var(--ink);border-left:3px solid var(--omr)}
+.chk li.ok{background:var(--good-soft);color:var(--good)}
+.chk li.bad{background:var(--bad-soft);color:var(--bad)}
+.model{display:flex;flex-direction:column;gap:8px}
+.seg{display:grid;grid-template-columns:5.5em minmax(0,1fr);gap:10px;align-items:baseline;padding:8px 10px;border-radius:8px;background:var(--good-soft)}
+.seg .sl{font-size:12px;font-weight:700;color:var(--omr)}
+.seg .st{font-size:16px;line-height:1.85;overflow-wrap:anywhere}
+.uses{display:flex;flex-wrap:wrap;gap:6px}
+.use{display:inline-flex;gap:6px;align-items:baseline;border:1px solid var(--rule);border-radius:8px;padding:4px 10px;font-size:14px;background:var(--sheet)}
+.use span{color:var(--muted);font-size:13px}
+.self{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.selfbtn{appearance:none;font:inherit;font-size:13px;border:1px solid var(--rule);background:transparent;color:var(--ink);padding:5px 10px;border-radius:999px;cursor:pointer}
+.selfbtn[aria-pressed="true"].y{background:var(--good);border-color:var(--good);color:var(--sheet)}
+.selfbtn[aria-pressed="true"].n{background:var(--warn);border-color:var(--warn);color:var(--sheet)}
+.mine{white-space:pre-wrap;background:var(--box);border:1px solid var(--rule);border-radius:8px;padding:10px 12px;font-size:15px;overflow-wrap:anywhere}
+.sendtxt{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font-family:var(--f-body);font-size:14px;background:var(--box);border:1px solid var(--rule);padding:12px;border-radius:8px;max-height:320px;overflow:auto}
+.saved{color:var(--good);font-weight:700}
+.tbl{overflow-x:auto}
+table.t{border-collapse:collapse;width:100%;font-size:14px}
+table.t th{text-align:left;font-size:12px;color:var(--muted);font-weight:700;padding:6px 8px;border-bottom:1px solid var(--rule);white-space:nowrap}
+table.t td{padding:8px;border-bottom:1px solid var(--rule);vertical-align:top;overflow-wrap:anywhere}
+.slist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.slist li{display:flex;flex-direction:column;gap:4px;padding:10px 0;border-top:1px solid var(--rule)}
+.slist .nm{font-weight:700}
+.slist .tx{white-space:pre-wrap;font-size:15px;overflow-wrap:anywhere}
+@media (prefers-reduced-motion:no-preference){#fbcard:not([hidden]){animation:rise .25s ease-out}}
+@keyframes rise{from{transform:translateY(6px);opacity:.6}to{transform:none;opacity:1}}
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">TOPIK II · 쓰기 53 · бэлтгэл</span>
+    <h1>Бичих бэлтгэл: график, хүснэгт тайлбарлах</h1>
+    <p class="sub">Графикийг уншаад 200–300 үсэгтэй (띄어쓰기 포함) тайлбар бичнэ. Гацвал «Тип авах», бичиж дуусаад «Хариулт харах» дарж жишээ хариулт, хэллэг, анхаарах зүйлсийг харна. Энэ бол шалгалт биш, бэлтгэл.</p>
+  </header>
+
+  <section class="sheet" id="tpl">
+    <div class="row between">
+      <div><span class="eyebrow">Заавал цээжлэх</span><h2 style="margin-top:4px">Загвар өгүүлбэр: 3 эхлэл · 3 гол хэсэг · 3 дүгнэлт</h2></div>
+      <button class="btn ghost small" id="tplQuiz" type="button" aria-pressed="false">Цээжилснээ шалгах</button>
+    </div>
+    <p class="sub">Эдгээр өгүүлбэрийг цээжилчихвэл ямар ч график гарсан <span class="slot">улаан</span> хэсгийг нь графикийн үг, тоогоор сольж бичихэд л болно. Аль загвар таарахыг графикийн төрлөөр нь сонго.</p>
+    <div class="tabs" id="tplTabs" role="tablist"></div>
+    <div class="tplgrid" id="tplCards"></div>
+    <details class="tplcombo">
+      <summary>Гурвыг нийлүүлбэл: нэг бүтэн хариулт (53-7)</summary>
+      <div class="combo" id="tplCombo"></div>
+    </details>
+  </section>
+
+  <section class="sheet">
+    <details class="bank">
+      <summary>53-т хэрэглэх хэллэгийн сан</summary>
+      <div class="bankgrid" id="bank"></div>
+    </details>
+  </section>
+
+  <section class="sheet">
+    <div class="namerow">
+      <label class="label" for="stuName">Таны нэр</label>
+      <input id="stuName" class="inp" type="text" maxlength="40" placeholder="Жишээ нь: Бат-Эрдэнэ" autocomplete="name">
+      <span class="note" id="nameNote">Багш таны бичсэнийг харахын тулд нэрээ бичнэ үү.</span>
+    </div>
+    <div class="row between"><div class="tabs" id="tabs"></div><span class="note" id="progress"></span></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="sheet" id="qcard">
+    <div class="row between"><div class="tags" id="qtags"></div><span class="note" id="qpos"></span></div>
+    <h2 id="qtitle"></h2>
+    <p class="inst" id="qinst"></p>
+    <div class="fig" id="fig"></div>
+    <div class="tipzone">
+      <div class="row"><button class="btn ghost small" id="tipBtn" type="button">Тип авах</button><span class="note" id="tipNote"></span></div>
+      <ul class="tiplist" id="tipList" hidden></ul>
+    </div>
+    <div class="paperwrap">
+      <label class="label" for="ans">Хариултаа энд бичнэ үү (гарчиг бичихгүй)</label>
+      <textarea id="ans" class="paper" lang="ko" spellcheck="false" placeholder="최근 ..."></textarea>
+      <div class="meter"><div class="mtrack"><i id="mfill"></i></div><span class="mcount" id="mcount">0 / 200–300자</span></div>
+    </div>
+    <div class="row">
+      <button class="btn" id="checkBtn" type="button">Хариулт харах</button>
+      <button class="btn ghost" id="clearBtn" type="button">Арилгах</button>
+      <span style="flex:1"></span>
+      <button class="btn ghost small" id="prevBtn" type="button">← Өмнөх</button>
+      <button class="btn ghost small" id="nextBtn" type="button">Дараах →</button>
+    </div>
+  </section>
+
+  <section class="sheet" id="fbcard" hidden>
+    <div class="row between"><h2>Хариулт ба тайлбар</h2><span class="note">Жишээ хариулттай яг адил байх шаардлагагүй. Бүтэц, тоо, хэллэг зөв бол болно.</span></div>
+    <h3>Таны бичсэн</h3>
+    <div class="mine" id="mine"></div>
+    <ul class="chk" id="chk"></ul>
+    <h3 id="modelH">Жишээ хариулт</h3>
+    <div class="model" id="model"></div>
+    <h3>Энэ төрөлд хэрэглэх хэллэг</h3>
+    <div class="uses" id="uses"></div>
+    <div class="self"><span class="note">Өөрийгөө үнэл:</span><button type="button" class="selfbtn y" id="selfY">✓ Сайн бичсэн</button><button type="button" class="selfbtn n" id="selfN">✎ Дахин бичье</button></div>
+  </section>
+
+  <section class="sheet" id="tqCard" hidden>
+    <div class="row between"><span class="eyebrow">Багшийн хэсэг · зөвхөн танд харагдана</span><span class="note" id="tqCount"></span></div>
+    <h2>Энэ дасгалд шавь нарын бичсэн</h2>
+    <ul class="slist" id="tqList"></ul>
+  </section>
+
+  <section class="sheet" id="teacher" hidden>
+    <div class="row between"><span class="eyebrow">Багшийн хэсэг · зөвхөн танд харагдана</span><span class="note" id="tState">Ачаалж байна…</span></div>
+    <h2>Шавь нарын бичсэн</h2>
+    <div class="row"><label class="label" for="tStudent">Шавь сонгох</label><select id="tStudent" class="inp"></select></div>
+    <div class="tbl"><table class="t"><thead><tr><th>Дасгал</th><th>Үсэг</th><th>Бичсэн</th><th>Үнэлгээ</th></tr></thead><tbody id="tBody"></tbody></table></div>
+  </section>
+
+  <section class="sheet" id="sendCard">
+    <div class="row between"><h2>Бичсэнээ багшид илгээх</h2><span class="note" id="sendState"></span></div>
+    <p class="note" id="sendNote" style="margin:0">«Хариулт харах» дарсан дасгалуудын бичсэн нь энд цугларна. Доорх текстийг хуулж багшдаа илгээнэ үү.</p>
+    <pre class="sendtxt" id="sendText"></pre>
+    <div class="row"><button class="btn ghost small" id="copyBtn" type="button">Хуулах</button><span class="note" id="copyMsg" aria-live="polite"></span></div>
+  </section>
+</div>
+
+<script>
+(function(){
+"use strict";
+/* ================= Expression bank ================= */
+const BANK=[
+ ["Эхлэл · судалгааг танилцуулах",[["~에서 ~을/를 대상으로 ~에 대해 조사하였다","…-ыг хамруулан … талаар судалсан"],["~에 대해 조사한 결과","… талаар судалсны үр дүнд"],["조사 결과에 따르면","судалгааны үр дүнгээс үзэхэд"]]],
+ ["Өсөлт · бууралт",[["증가하다 / 감소하다","өсөх / буурах"],["급증하다 / 급감하다","огцом өсөх / огцом буурах"],["꾸준히 증가하다","тогтвортой өсөх"],["~에서 ~(으)로 늘었다/줄었다","…-аас … болж өссөн/буурсан"],["약 ~배 증가하였다","ойролцоогоор … дахин өссөн"],["~에 달했다 / 도달했다 / 이르렀다","…-д хүрсэн"]]],
+ ["Харьцуулах",[["~이/가 ~%로 가장 높았다/많았다","… %-иар хамгийн өндөр"],["~이/가 ~%로 그 뒤를 이었다","… %-иар удаалсан"],["반면(에)","харин, эсрэгээрээ"],["~에 비해 / ~보다","…-тай харьцуулахад"],["절반 이상을 차지했다","талаас илүүг эзэлсэн"],["~%에 불과했다 / 그쳤다","ердөө …% байсан"],["~%로 가장 낮게 나타났다","…%-иар хамгийн бага"],["두 집단 모두 / 동일하게","хоёр бүлэг хоёулаа / адилхан"]]],
+ ["Шалтгаан",[["이러한 변화의 원인은 다음과 같다","энэ өөрчлөлтийн шалтгаан нь"],["먼저 ~ / 다음으로 ~ / 마지막으로 ~","нэгдүгээрт / дараа нь / эцэст нь"],["~을/를 들 수 있다","…-г дурдаж болно"],["~(으)로 인해 / ~기 때문이다","…-ын улмаас / …учраас"]]],
+ ["Цаашдын төлөв",[["앞으로도 계속 증가할 것으로 전망된다","цаашид ч өсөх төлөвтэй"],["~에 이를 것으로 예상된다","…-д хүрнэ гэж таамаглаж байна"],["~(으)ㄹ 것으로 보인다","… бололтой"]]],
+ ["Хүснэгт · ангилал, давуу/сул тал",[["크게 A, B, C로 나눌 수 있다","ерөнхийдөө A, B, C гэж хуваана"],["먼저 A에는 ~이/가 있다","нэгдүгээрт A-д … ордог"],["~다는 특징이 있다","… гэсэн онцлогтой"],["장점으로는 ~ / 반면 단점으로는 ~","давуу тал нь … / харин сул тал нь …"]]],
+ ["Дүгнэлт",[["이를 통해 ~다는 것을 알 수 있다","үүнээс … гэдгийг харж болно"],["이처럼 ~","ийнхүү …"]]],
+ ["Бичих дүрэм",[["-다 хэлбэрээр бичнэ","-요, -습니다 ✗"],["하였다 = 했다, 되었다 = 됐다","аль нь ч болно"],["Өөрийн бодол (저는, 제 생각에는) ✗","53 бол бодит тайлбар"],["Гарчиг ✗, 200–300자 (띄어쓰기 포함)","хоосон зай ч тоологдоно"]]]
+];
+const TYPEEXP={
+ trend:[["~에서 ~(으)로 증가하였다","…-аас … болж өссөн"],["약 ~배 증가하였다","… дахин өссөн"],["이러한 변화의 이유는 ~ 때문이다","өөрчлөлтийн шалтгаан"],["앞으로도 ~ 것으로 전망된다","цаашдын төлөв"]],
+ comp:[["~을/를 대상으로 조사하였다","судалгааны танилцуулга"],["~이/가 ~%로 가장 높았다","хамгийн өндөр"],["그 뒤를 이었다","удаалсан"],["반면","харин"],["~%에 불과했다","ердөө"],["이를 통해 ~다는 것을 알 수 있다","дүгнэлт"]],
+ table:[["크게 ~(으)로 나눌 수 있다","ангилах"],["먼저 / 다음으로 / 마지막으로","дараалал"],["~다는 특징이 있다","онцлог"],["장점으로는 / 반면 단점으로는","давуу / сул тал"],["따라서 ~기 위해서는 ~아/어야 한다","шийдэл"]]
+};
+const TYPEN={trend:"Өсөлт · бууралт",comp:"Харьцуулалт",table:"Хүснэгт · ангилал"};
+const STRUCT={
+ trend:"① юу, хэзээнээс хэзээ хүртэл, хэдээс хэд болж өөрчлөгдсөн → ② шалтгаан (먼저/다음으로/마지막으로) → ③ цаашдын төлөв эсвэл онцлох зүйл.",
+ comp:"① хэн, хэнийг хамруулсан судалгаа → ② нэг бүлгийн үр дүн (хамгийн өндрөөс доош) → ③ 반면 нөгөө бүлгийн үр дүн → ④ 이를 통해 … 알 수 있다 гэж дүгнэх.",
+ table:"① ерөнхий танилцуулга → ② ангилал эсвэл давуу тал (먼저/다음으로) → ③ сул тал (반면) → ④ дүгнэлт эсвэл шийдэл."
+};
+/* ================= Items =================
+   fig panels: hbar | group | pie | line | list | table */
+const Q=[
+{id:"53-1",type:"trend",title:"1인 가구 증가의 원인과 현황",
+ inst:"최근 한국 사회에서는 1인 가구가 계속 증가하고 있습니다. 다음 자료를 참고하여 1인 가구 증가의 원인과 현황을 설명하는 글을 200~300자로 쓰십시오.",
+ meta:[],panels:[{t:"list",title:"1인 가구 증가의 원인",items:["결혼관의 변화와 독신의 증가","노인 인구 증가","여성의 사회 진출 증가"]},{t:"line",title:"1인 가구의 현황 (전체 가구 수 대비)",unit:"%",items:[["2000년",16],["2012년",26]]}],
+ nums:["16","26","2000","2012"],tip:"Эхлээд 2000→2012 онд хэдээс хэд болсныг бич, дараа нь 3 шалтгааныг 먼저/다음으로/마지막으로-оор жагсаа.",start:"최근 한국 사회에서는 1인 가구가 꾸준히 증가하고 있다. 2000년에 전체 가구의 16%였던 1인 가구는 …",
+ model:"최근 한국 사회에서는 1인 가구가 꾸준히 증가하고 있다. 2000년에 전체 가구 수의 16%였던 1인 가구는 2012년에 26%로 늘어나 12년 사이에 10%가 증가하였다. 이러한 증가의 원인은 다음과 같다. 먼저 결혼관이 변화하면서 독신이 늘어났다. 다음으로 노인 인구가 증가한 것도 원인의 하나이다. 마지막으로 여성의 사회 진출 증가도 1인 가구 증가에 영향을 미쳤다. 이러한 원인으로 1인 가구는 앞으로도 계속 증가할 것으로 전망된다."},
+{id:"53-2",type:"trend",title:"인주시의 자전거 이용자 변화 (60회 기출)",
+ inst:"다음을 참고하여 '인주시의 자전거 이용자 변화'에 대한 글을 200~300자로 쓰십시오. 단, 글의 제목을 쓰지 마십시오.",
+ meta:[],panels:[{t:"line",title:"자전거 이용자 수",unit:"명",items:[["2007년",4,"4만"],["2012년",9,"9만"],["2017년",21,"21만"]]},{t:"list",title:"변화 이유",items:["자전거 도로 개발","자전거 빌리는 곳 확대"]},{t:"table",title:"이용 목적 (2007년 → 2017년)",head:["운동 및 산책","출퇴근","기타"],rows:[["4배","14배","3배"]]}],
+ nums:["4만","9만","21만","5배","14배"],tip:"10 жилд 4만 → 21만 (약 5배) гэдгийг эхэнд бич. Дараа нь 2 шалтгаан, эцэст нь зорилгоор нь (ялангуяа 출퇴근 14배) харьцуул.",start:"인주시의 자전거 이용자 수는 2007년 4만 명에서 2017년 21만 명으로 …",
+ model:"인주시의 자전거 이용자 수는 2007년 4만 명에서 2012년 9만 명, 2017년 21만 명으로 10년 사이에 약 5배 증가하였다. 이러한 변화의 이유는 자전거 도로가 개발되고 자전거를 빌리는 곳이 확대되었기 때문이다. 이용 목적별로 살펴보면 2007년에 비해 2017년에 운동 및 산책은 4배, 출퇴근은 14배, 기타는 3배 증가한 것으로 나타났다. 특히 출퇴근 목적의 이용이 가장 크게 늘어났다는 것을 알 수 있다."},
+{id:"53-3",type:"comp",title:"담배를 다시 피우게 된 이유와 시기",
+ inst:"다음을 참고하여 '금연 후 다시 흡연하게 된 이유와 시기'에 대한 글을 200~300자로 쓰십시오. 단, 글의 제목을 쓰지 마십시오.",
+ meta:["대상: 금연을 했던 경험이 있는 흡연자"],panels:[{t:"hbar",title:"다시 흡연하게 된 이유",unit:"%",items:[["스트레스",32],["흡연 습관과 욕구",30],["술자리 주변의 권유",13],["의지 부족",7],["금단 증상",5],["기타",13]]},{t:"hbar",title:"다시 흡연하게 된 시기",unit:"%",items:[["1년 미만",75],["1년 이후",6],["2년 이후",2],["3년 이후",2],["5년 이후",15]]}],
+ nums:["32","30","75","15"],tip:"Шалтгаан: хамгийн өндөр 2-ыг (32%, 30%) онцолж, бусдыг товч дурд. Хугацаа: 1년 미만 75% гэдгийг заавал бич.",start:"금연을 했던 경험이 있는 흡연자를 대상으로 다시 담배를 피우게 된 이유와 시기를 조사하였다. 그 결과 …",
+ model:"금연을 했던 경험이 있는 흡연자를 대상으로 다시 담배를 피우게 된 이유와 시기를 조사하였다. 그 결과 다시 흡연하게 된 이유로 '스트레스'가 32%로 가장 많았고, '흡연 습관과 욕구'가 30%로 그 뒤를 이었다. 이어서 '술자리에서 주변의 권유'가 13%, '의지 부족'이 7%로 나타났다. 다시 흡연하게 된 시기는 '1년 미만'이 75%로 가장 높았으며 '5년 이후'도 15%나 되었다. 이를 통해 금연 후 1년이 가장 중요한 시기라는 것을 알 수 있다."},
+{id:"53-4",type:"table",title:"대중매체의 종류와 특징",
+ inst:"다음 표를 참고하여 '대중매체의 종류와 특징'에 대해 200~300자로 쓰십시오. 단, 글의 제목을 쓰지 마십시오.",
+ meta:[],panels:[{t:"table",title:"대중매체",head:["인쇄매체","전파매체","통신매체"],rows:[["책, 잡지, 신문","텔레비전, 라디오","인터넷"],["기록이 오래 보관됨","정보를 생생하게 전달함","쌍방향 소통이 가능함"],["정보의 신뢰도가 높음","오락적 기능이 뛰어남","다량의 정보를 생산함"]]}],
+ nums:["인쇄","전파","통신"],tip:"Тоо байхгүй. «크게 세 가지로 나눌 수 있다» гэж эхлээд, төрөл бүрийг 먼저/다음으로/마지막으로-оор жишээ + онцлогтой нь бич.",start:"사람들은 대중매체를 통해 다양한 정보를 얻는다. 이러한 대중매체는 크게 …",
+ model:"사람들은 대중매체를 통해 다양한 정보를 얻는다. 이러한 대중매체는 크게 인쇄매체, 전파매체, 통신매체의 세 가지로 나눌 수 있다. 먼저 인쇄매체에는 책, 잡지, 신문 등이 있으며 기록이 오래 보관되고 정보의 신뢰도가 높다는 특징이 있다. 다음으로 전파매체에는 텔레비전과 라디오가 속하는데 정보를 생생하게 전달하고 오락적 기능이 뛰어나다. 마지막으로 통신매체는 인터넷을 말하며 쌍방향 소통이 가능하고 다량의 정보를 생산한다는 특징을 가진다."},
+{id:"53-5",type:"table",title:"인터넷의 장단점",
+ inst:"다음 표를 보고 인터넷의 장단점에 대해 쓰고, 인터넷을 잘 이용하기 위해서는 어떻게 해야 하는지 200~300자로 쓰십시오.",
+ meta:[],panels:[{t:"table",title:"인터넷의 장단점",head:["장점","단점"],rows:[["정보를 빠르게 검색할 수 있다","믿을 수 없는 거짓 정보가 많다"],["언제든지 쇼핑을 편리하게 할 수 있다","인터넷에 중독이 될 수 있다"]]}],
+ nums:["장점","단점"],tip:"Давуу 2, сул 2 талыг бүгдийг нь бич. Төгсгөлд «따라서 인터넷을 잘 이용하기 위해서는 …아/어야 한다» гэж шийдэл нэм.",start:"인터넷은 우리 생활에 많은 편리함을 주지만 문제점도 있다. 먼저 인터넷의 장점으로는 …",
+ model:"인터넷은 우리 생활에 많은 편리함을 주지만 문제점도 있다. 먼저 인터넷의 장점으로는 정보를 빠르게 검색할 수 있고 언제든지 편리하게 쇼핑을 할 수 있다는 점을 들 수 있다. 반면 단점으로는 믿을 수 없는 거짓 정보가 많고 인터넷에 중독될 수 있다는 점이 있다. 따라서 인터넷을 잘 이용하기 위해서는 정보를 그대로 믿지 말고 사실인지 확인하는 습관을 가져야 한다. 또한 사용 시간을 정해 두고 지키려는 노력이 필요하다."},
+{id:"53-6",type:"comp",title:"연령대에 따라 필요하다고 생각하는 공공시설",
+ inst:"다음 그래프를 보고, 연령대에 따라 필요하다고 생각하는 공공시설이 무엇인지 비교하여 200~300자로 쓰십시오.",
+ meta:["대상: 30대와 60대 성인 남녀 500명"],panels:[{t:"pie",title:"30대",items:[["공연장·문화센터",40],["병원·약국",28],["공원",22],["기타",10]]},{t:"pie",title:"60대",items:[["병원·약국",50],["공연장·문화센터",23],["공원",22],["기타",5]]}],
+ nums:["40","28","50","23","22"],tip:"30대: 공연장·문화센터 40% хамгийн өндөр. 60대: 병원·약국 50% (절반). 공원 хоёуланд 22% (동일하게).",start:"30대와 60대 성인 남녀 500명을 대상으로 필요하다고 생각하는 공공시설에 대해 조사하였다. 그 결과 …",
+ model:"30대와 60대 성인 남녀 500명을 대상으로 필요하다고 생각하는 공공시설에 대해 조사하였다. 그 결과 30대는 '공연장·문화센터'가 40%로 가장 높았고 '병원·약국'이 28%, '공원'이 22%로 뒤를 이었다. 반면 60대는 '병원·약국'이 50%로 절반을 차지했으며 '공연장·문화센터'는 23%에 그쳤다. '공원'은 두 연령대 모두 22%로 동일하게 나타났다. 이를 통해 30대는 문화생활을, 60대는 건강을 더 중요하게 생각한다는 것을 알 수 있다."},
+{id:"53-7",type:"comp",title:"글쓰기 능력을 향상시키는 방법",
+ inst:"다음은 '글쓰기 능력을 향상시키는 방법'에 대해 교사와 학생을 대상으로 실시한 설문 조사입니다. 그래프를 보고, 조사 결과를 비교하여 200~300자로 쓰십시오.",
+ meta:["대상: 교사 300명, 학생 300명"],panels:[{t:"group",title:"글쓰기 능력을 향상시키는 방법",series:["교사","학생"],unit:"%",items:[["책 많이 읽기",[45,25]],["좋은 글 따라 쓰기",[30,10]],["다양한 주제로 연습하기",[25,65]]]}],
+ nums:["45","30","25","65","10"],tip:"Багш: 책 많이 읽기 45% хамгийн өндөр. Сурагч: 다양한 주제로 연습하기 65% (절반 이상). 좋은 글 따라 쓰기 сурагчдад 10%-д 불과.",start:"'글쓰기 능력을 향상시키는 방법'에 대해 교사와 학생 각각 300명을 대상으로 설문 조사를 실시하였다. 그 결과 …",
+ model:"'글쓰기 능력을 향상시키는 방법'에 대해 교사와 학생 각각 300명을 대상으로 설문 조사를 실시하였다. 그 결과 교사는 '책 많이 읽기'가 45%로 가장 높았고 '좋은 글 따라 쓰기'가 30%, '다양한 주제로 연습하기'가 25%로 나타났다. 반면 학생은 '다양한 주제로 연습하기'가 65%로 절반 이상을 차지했으며 '책 많이 읽기'는 25%, '좋은 글 따라 쓰기'는 10%에 불과했다. 이처럼 교사는 독서를, 학생은 직접 써 보는 연습을 더 중요하게 생각한다는 것을 알 수 있다."},
+{id:"53-8",type:"comp",title:"아이를 꼭 낳아야 하는가",
+ inst:"다음을 참고하여 '아이를 꼭 낳아야 하는가'에 대한 조사 결과를 200~300자로 쓰십시오. 단, 글의 제목을 쓰지 마십시오.",
+ meta:["조사 기관: 결혼문화연구소","조사 대상: 20대 이상 성인 남녀 3,000명"],panels:[{t:"group",title:"아이를 꼭 낳아야 하는가",series:["남","여"],unit:"%",items:[["그렇다",[80,67]],["아니다",[20,33]]]},{t:"table",title:"'아니다'라고 응답한 이유",head:["","남","여"],rows:[["1위","양육비 부담","자유로운 생활"],["2위","자유로운 생활","직장 생활 유지"]]}],
+ nums:["80","67","20","33"],tip:"Эхний өгүүлбэрт байгууллага, 3,000명-ыг дурд. 그렇다/아니다-г эрэгтэй, эмэгтэйгээр харьцуулаад, «아니다» шалтгааныг 1위, 2위-аар бич.",start:"결혼문화연구소에서 20대 이상 성인 남녀 3,000명을 대상으로 '아이를 꼭 낳아야 하는가'에 대해 조사하였다. 그 결과 …",
+ model:"결혼문화연구소에서 20대 이상 성인 남녀 3,000명을 대상으로 '아이를 꼭 낳아야 하는가'에 대해 조사하였다. 그 결과 '그렇다'고 응답한 남성은 80%, 여성은 67%였고 '아니다'라고 응답한 남성은 20%, 여성은 33%로 나타났다. '아니다'라고 응답한 이유로 남성은 '양육비 부담'을 1위로, '자유로운 생활'을 2위로 꼽았다. 반면 여성은 '자유로운 생활'이 1위, '직장 생활 유지'가 2위였다. 이를 통해 남녀가 아이를 원하지 않는 이유에 차이가 있음을 알 수 있다."},
+{id:"53-9",type:"comp",title:"행복한 삶을 위한 필수 조건",
+ inst:"다음을 참고하여 '행복한 삶을 위한 필수 조건'에 대한 글을 200~300자로 쓰십시오. 단, 글의 제목을 쓰지 마십시오.",
+ meta:["대상: 10대, 20대, 30대"],panels:[{t:"pie",title:"10대",items:[["가족",52],["사랑",24],["돈",18],["건강",6]]},{t:"pie",title:"20대",items:[["가족",53],["돈",23],["사랑",22],["건강",2]]},{t:"pie",title:"30대",items:[["가족",54],["사랑",30],["돈",14],["건강",2]]}],
+ nums:["52","53","54","23","30"],tip:"Бүх насанд 가족 50%-иас дээш → эхэнд нэгтгэж бич. Дараа нь 2-р байрын ялгааг (사랑/돈) харьцуул.",start:"10대, 20대, 30대를 대상으로 '행복한 삶을 위한 필수 조건'에 대해 조사하였다. 그 결과 모든 연령대에서 …",
+ model:"10대, 20대, 30대를 대상으로 '행복한 삶을 위한 필수 조건'에 대해 조사하였다. 그 결과 모든 연령대에서 '가족'이 각각 52%, 53%, 54%로 절반 이상을 차지하며 가장 높게 나타났다. 두 번째로 10대와 30대는 '사랑'을 꼽았고 20대는 '돈'을 꼽았다. 특히 '돈'은 20대에서 23%로 가장 높았지만 30대에서는 14%로 낮아졌다. '건강'은 모든 연령대에서 6% 이하로 가장 낮았다. 이를 통해 나이와 관계없이 가족을 가장 중요하게 생각한다는 것을 알 수 있다."},
+{id:"53-10",type:"comp",title:"성별에 따른 성차별 의식",
+ inst:"다음을 참고하여 '성별에 따른 성차별 의식'에 대한 글을 200~300자로 쓰십시오. 단, 글의 제목을 쓰지 마십시오.",
+ meta:["대상: 부부"],panels:[{t:"pie",title:"남성",items:[["남성이 여성에 비해 차별받음",39],["성 평등을 이룸",32],["여성이 남성에 비해 차별받음",29]]},{t:"pie",title:"여성",items:[["여성이 남성에 비해 차별받음",68],["성 평등을 이룸",17],["남성이 여성에 비해 차별받음",15]]}],
+ nums:["39","32","29","68","17","15"],tip:"Эрэгтэйчүүдийн хамгийн өндөр хариулт 39%, эмэгтэйчүүдийнх 68% → хоёулаа «өөрийн хүйс ялгаварлагддаг» гэж үздэг гэсэн дүгнэлт.",start:"부부를 대상으로 성별에 따른 성차별 의식을 조사하였다. 그 결과 남성은 …",
+ model:"부부를 대상으로 성별에 따른 성차별 의식을 조사하였다. 그 결과 남성은 '남성이 여성에 비해 차별받는다'는 응답이 39%로 가장 많았고 '성 평등을 이루었다'가 32%, '여성이 남성에 비해 차별받는다'가 29%로 나타났다. 반면 여성은 '여성이 남성에 비해 차별받는다'는 응답이 68%로 절반 이상을 차지했으며 '성 평등을 이루었다'는 17%에 불과했다. 이처럼 남녀 모두 자신의 성별이 더 차별받는다고 생각하는 경향이 있음을 알 수 있다."},
+{id:"53-11",type:"comp",title:"연휴를 도심에서 보낼 때 선호하는 장소",
+ inst:"다음을 참고하여 '연휴를 도심에서 보내야 할 때 선호하는 장소'에 대한 글을 200~300자로 쓰십시오. 단, 글의 제목을 쓰지 마십시오.",
+ meta:[],panels:[{t:"hbar",title:"1인 가구",unit:"%",items:[["커피숍",40],["도서관",24],["영화관",19],["쇼핑몰",15],["공원",2]]},{t:"hbar",title:"2인 이상 가구",unit:"%",items:[["영화관",60],["커피숍",20],["쇼핑몰",16],["공원",3],["도서관",1]]}],
+ nums:["40","24","60","20","1"],tip:"1인 가구 → 커피숍 40%, 2인 이상 → 영화관 60%. Хамгийн их ялгаатай нь 도서관 (24% ↔ 1%).",start:"연휴를 도심에서 보내야 할 때 선호하는 장소를 가구 형태에 따라 조사하였다. 그 결과 …",
+ model:"연휴를 도심에서 보내야 할 때 선호하는 장소를 가구 형태에 따라 조사하였다. 그 결과 1인 가구는 '커피숍'이 40%로 가장 높았고 '도서관' 24%, '영화관' 19%, '쇼핑몰' 15%의 순으로 나타났다. 반면 2인 이상 가구는 '영화관'이 60%로 절반 이상을 차지했으며 '커피숍' 20%, '쇼핑몰' 16%가 뒤를 이었다. 특히 '도서관'은 1인 가구에서 24%였지만 2인 이상 가구에서는 1%에 불과했다. 이를 통해 가구 형태에 따라 선호하는 장소가 다르다는 것을 알 수 있다."},
+{id:"53-12",type:"comp",title:"명절에 친척들에게 듣기 싫은 말",
+ inst:"다음을 참고하여 '명절에 친척들에게 듣기 싫은 말'에 대한 글을 200~300자로 쓰십시오. 단, 글의 제목을 쓰지 마십시오.",
+ meta:["대상: 미혼 남녀 400명"],panels:[{t:"group",title:"명절에 친척들에게 듣기 싫은 말",series:["여성","남성"],unit:"%",items:[["각종 자랑 이야기",[34,24]],["결혼 관련 이야기",[31,30]],["남과 비교하는 이야기",[20,15]],["직장 관련 이야기",[13,28]],["기타",[2,3]]]}],
+ nums:["34","31","30","28","13"],tip:"Эмэгтэй: 자랑 이야기 34% хамгийн өндөр. Эрэгтэй: 결혼 30%. 직장 이야기 эрэгтэйд 28% ↔ эмэгтэйд 13% (두 배 이상).",start:"미혼 남녀 400명을 대상으로 명절에 친척들에게 듣기 싫은 말에 대해 조사하였다. 그 결과 …",
+ model:"미혼 남녀 400명을 대상으로 명절에 친척들에게 듣기 싫은 말에 대해 조사하였다. 그 결과 여성은 '각종 자랑 이야기'가 34%로 가장 높았고 '결혼 관련 이야기'가 31%, '남과 비교하는 이야기'가 20%로 뒤를 이었다. 반면 남성은 '결혼 관련 이야기'가 30%로 가장 높았으며 '직장 관련 이야기'가 28%로 여성의 13%보다 두 배 이상 높게 나타났다. 이를 통해 남녀 모두 결혼 이야기를 부담스러워하며 남성은 특히 직장 이야기를 듣기 싫어한다는 것을 알 수 있다."},
+{id:"53-13",type:"comp",title:"직업 선택의 기준",
+ inst:"다음을 참고하여 '직업 선택의 기준'에 대한 글을 200~300자로 쓰십시오. 단, 글의 제목을 쓰지 마십시오.",
+ meta:[],panels:[{t:"pie",title:"직업 선택의 기준",items:[["적성",25.9],["안정성",23],["소득",18.9],["기타",16.6],["흥미",15.6]]},{t:"table",title:"성별에 따른 기준",head:["","남자","여자"],rows:[["1위","적성 36%","적성 40%"],["2위","소득 22%","안정성 19%"]]}],
+ nums:["25.9","23","18.9","36","40","22","19"],tip:"Эхлээд нийт дүн (적성 25.9% хамгийн өндөр), дараа нь хүйсээр: 1위 хоёуланд 적성, 2위 ялгаатай (소득 ↔ 안정성).",start:"직업 선택의 기준에 대해 조사한 결과 '적성'이 25.9%로 가장 높았고 …",
+ model:"직업 선택의 기준에 대해 조사한 결과 '적성'이 25.9%로 가장 높았고 '안정성'이 23%, '소득'이 18.9%, '흥미'가 15.6%로 그 뒤를 이었다. 성별에 따라 살펴보면 남자와 여자 모두 '적성'을 1위로 꼽았는데 남자는 36%, 여자는 40%였다. 그러나 2위는 남자의 경우 '소득'이 22%였던 반면 여자는 '안정성'이 19%로 차이를 보였다. 이를 통해 남녀 모두 적성을 가장 중요하게 생각하지만 그다음으로 남자는 소득을, 여자는 안정성을 중시한다는 것을 알 수 있다."},
+{id:"53-14",type:"comp",title:"취업 성공 여부에 따른 향후 계획",
+ inst:"다음을 참고하여 '취업 성공 여부에 따른 향후 계획'에 대한 글을 200~300자로 쓰십시오. 단, 글의 제목을 쓰지 마십시오.",
+ meta:["대상: 취업준비생"],panels:[{t:"hbar",title:"취업에 성공할 경우",unit:"%",items:[["부모님께 선물을 사 드린다",40],["합격 사실을 주위에 알린다",27],["여행을 떠난다",21],["갖고 싶던 물건을 산다",10],["외모를 가꾼다",2]]},{t:"hbar",title:"취업에 실패할 경우",unit:"%",items:[["원하는 기업에 입사할 때까지 도전한다",48],["하향 지원한다",34],["재충전의 시간을 갖는다",9],["대학원 진학을 고려한다",6],["창업을 고려한다",3]]}],
+ nums:["40","27","48","34"],tip:"Амжилттай бол → 부모님께 선물 40%. Бүтэлгүйтвэл → 계속 도전 48%, 하향 지원 34%. Бага хувийг (대학원 6%, 창업 3%) «불과했다» гэж бич.",start:"취업준비생을 대상으로 취업 성공 여부에 따른 향후 계획을 조사하였다. 취업에 성공할 경우 …",
+ model:"취업준비생을 대상으로 취업 성공 여부에 따른 향후 계획을 조사하였다. 취업에 성공할 경우 '부모님께 선물을 사 드린다'가 40%로 가장 많았고 '합격 사실을 주위에 알린다'가 27%, '여행을 떠난다'가 21%로 뒤를 이었다. 반면 취업에 실패할 경우에는 '원하는 기업에 입사할 때까지 도전한다'가 48%로 가장 높았고 '하향 지원한다'가 34%로 나타났다. '대학원 진학'과 '창업'은 각각 6%, 3%에 불과했다. 이를 통해 대부분이 실패하더라도 취업을 계속 준비하려 한다는 것을 알 수 있다."},
+{id:"53-15",type:"comp",title:"직장인의 아침 식사",
+ inst:"다음을 참고하여 '직장인의 아침 식사 결식'에 대한 글을 200~300자로 쓰십시오. 단, 글의 제목을 쓰지 마십시오.",
+ meta:["조사 기관: 건강관리본부","조사 대상: 직장인 10,000명"],panels:[{t:"hbar",title:"아침 식사 결식률",unit:"%",items:[["20대",38],["40대",25]]},{t:"table",title:"아침을 안 먹는 이유",head:["","20대","40대"],rows:[["1위","더 자고 싶어서","출근 시간 때문에"],["2위","식사 준비가 번거로워서","습관이 되어서"]]},{t:"list",title:"영향",items:["활력 저하","집중력 감소","폭식 가능성 증가"]}],
+ nums:["38","25","10,000"],tip:"Гурван хэсэг: ① 결식률 20대 38% > 40대 25% ② шалтгааныг насаар ③ нөлөө (활력 저하, 집중력 감소, 폭식).",start:"건강관리본부에서 직장인 10,000명을 대상으로 아침 식사에 대해 조사하였다. 그 결과 …",
+ model:"건강관리본부에서 직장인 10,000명을 대상으로 아침 식사에 대해 조사하였다. 그 결과 아침 식사 결식률은 20대가 38%로 40대의 25%보다 높게 나타났다. 아침을 먹지 않는 이유로 20대는 '더 자고 싶어서'가 1위, '식사 준비가 번거로워서'가 2위였다. 반면 40대는 '출근 시간 때문에'가 1위, '습관이 되어서'가 2위로 나타났다. 아침을 먹지 않으면 활력이 떨어지고 집중력이 감소하며 폭식할 가능성도 높아지는 것으로 조사되었다."},
+{id:"53-16",type:"comp",title:"연령별 노후 준비 비율",
+ inst:"다음을 참고하여 '노후 준비 비율'에 대한 글을 200~300자로 쓰십시오. 단, 글의 제목을 쓰지 마십시오.",
+ meta:[],panels:[{t:"line",title:"연령별 노후 준비 비율",unit:"%",items:[["30대",77.2],["40대",65.8],["50대",50.4],["60대",35.2]]},{t:"list",title:"노후 준비 이유",items:["체력이 떨어짐","경제 활동 범위 줄어듦","다양한 취미 생활을 위해"]},{t:"pie",title:"희망하는 복지 서비스",items:[["건강검진",46],["간병",28],["취업 및 알선",14],["기타",12]]}],
+ nums:["77.2","65.8","50.4","35.2","46","28"],tip:"Нас ахих тусам буурч байна (77.2% → 35.2%). Дараа нь шалтгаан, эцэст нь хүсч буй үйлчилгээ (건강검진 46%).",start:"연령별 노후 준비 비율을 조사한 결과 30대가 77.2%로 가장 높았고 …",
+ model:"연령별 노후 준비 비율을 조사한 결과 30대가 77.2%로 가장 높았고 40대 65.8%, 50대 50.4%, 60대 35.2%로 나이가 많을수록 낮아지는 것으로 나타났다. 노후 준비를 하는 이유는 체력이 떨어지고 경제 활동 범위가 줄어들기 때문이며 다양한 취미 생활을 하기 위해서이다. 한편 희망하는 복지 서비스로는 '건강검진'이 46%로 가장 많았고 '간병'이 28%, '취업 및 알선'이 14%로 그 뒤를 이었다. 이를 통해 노후에는 건강과 관련된 지원이 가장 필요하다는 것을 알 수 있다."},
+{id:"53-17",type:"comp",title:"20대와 40대의 새해 계획",
+ inst:"다음을 참고하여 '20대와 40대의 새해 계획'에 대한 글을 200~300자로 쓰십시오. 단, 글의 제목을 쓰지 마십시오.",
+ meta:[],panels:[{t:"hbar",title:"20대",unit:"%",items:[["돈 모으기",45],["운동",32],["다이어트",27],["취업",18]]},{t:"hbar",title:"40대",unit:"%",items:[["건강관리",43],["운동",35],["돈 모으기",26],["여행 가기",15]]}],
+ nums:["45","32","43","35","26"],tip:"20대 → 돈 모으기 45%, 40대 → 건강관리 43%. 운동 хоёуланд 2-р байр (두 연령대 모두).",start:"20대와 40대를 대상으로 새해 계획에 대해 조사하였다. 그 결과 …",
+ model:"20대와 40대를 대상으로 새해 계획에 대해 조사하였다. 그 결과 20대는 '돈 모으기'가 45%로 가장 높았고 '운동'이 32%, '다이어트'가 27%, '취업'이 18%로 나타났다. 반면 40대는 '건강관리'가 43%로 가장 높았으며 '운동'이 35%, '돈 모으기'가 26%, '여행 가기'가 15%로 뒤를 이었다. '운동'은 두 연령대 모두 2위를 차지했다. 이를 통해 20대는 경제적인 계획을, 40대는 건강에 대한 계획을 가장 중요하게 생각한다는 것을 알 수 있다."},
+{id:"53-18",type:"comp",title:"연령별 직업 선택 요인",
+ inst:"다음을 참고하여 '연령별 직업 선택 요인'에 대한 글을 200~300자로 쓰십시오. 단, 글의 제목을 쓰지 마십시오.",
+ meta:["대상: 10대, 20대"],panels:[{t:"group",title:"연령별 직업 선택 요인",series:["10대","20대"],unit:"%",items:[["적성",[54,20]],["수입",[31,42]],["안정성",[15,38]]]}],
+ nums:["54","31","15","20","42","38"],tip:"10대 → 적성 54% (절반 이상). 20대 → 수입 42%, 안정성 38%, 적성 20%-д 불과. Дүгнэлт: нас ахих тусам бодит нөхцөлийг чухалчилна.",start:"10대와 20대를 대상으로 직업 선택 요인을 조사하였다. 그 결과 …",
+ model:"10대와 20대를 대상으로 직업 선택 요인을 조사하였다. 그 결과 10대는 '적성'이 54%로 절반 이상을 차지했으며 '수입'이 31%, '안정성'이 15%로 나타났다. 반면 20대는 '수입'이 42%로 가장 높았고 '안정성'이 38%로 뒤를 이었으며 '적성'은 20%에 불과했다. 특히 20대는 10대에 비해 '적성'의 비율은 크게 낮고 '안정성'의 비율은 크게 높았다. 이를 통해 나이가 들수록 현실적인 조건을 더 중요하게 생각한다는 것을 알 수 있다."}
+];
+
+/* ================= Helpers / state ================= */
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const COLORS=["var(--s1)","var(--s2)","var(--s3)","var(--s4)","var(--s5)","var(--s6)"];
+const KEY="ssg53";
+let S={};try{S=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){S={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function st(id){return S[id]||(S[id]={a:"",checked:false,self:"",tip:0,at:""})}
+let filter="all",cur=0,DB=null,UID=null,canWrite=null,ROWS=[],pushT=null,chain=Promise.resolve();
+try{const f=localStorage.getItem(KEY+"f");if(f)filter=f;const c=+localStorage.getItem(KEY+"c");if(c>=0&&c<Q.length)cur=c}catch(e){}
+function list(){return Q.filter(q=>filter==="all"||q.type===filter)}
+function clen(t){return t.replace(/\r?\n/g,"").length}
+
+/* ================= Charts ================= */
+function fmtv(v,u){return (Number.isInteger(v)?v:v.toFixed(1))+(u==="%"?"%":"")}
+function panelHTML(p,cmap){
+  cmap=cmap||{};const col=(l,i)=>cmap[l]||COLORS[i%COLORS.length];
+  const t=`<div class="pt">${esc(p.title||"")}</div>`;
+  if(p.t==="hbar"){const mx=Math.max(...p.items.map(x=>x[1]));
+    return t+`<div class="hb">`+p.items.map(([l,v])=>`<span class="l">${esc(l)}</span><span class="tr"><i style="width:${v/mx*100}%"></i></span><span class="v">${fmtv(v,p.unit)}</span>`).join("")+`</div>`}
+  if(p.t==="group"){const mx=Math.max(...p.items.flatMap(x=>x[1]));
+    return t+`<div class="legend">`+p.series.map((s,i)=>`<span><i style="background:${COLORS[i]}"></i>${esc(s)}</span>`).join("")+`</div><div class="gb">`+
+      p.items.map(([l,vs])=>`<div><div class="cat">${esc(l)}</div><div class="bars">`+vs.map((v,i)=>`<div class="b"><span style="display:block"><i style="width:${v/mx*100}%;background:${COLORS[i]}"></i></span><span>${fmtv(v,p.unit)}</span></div>`).join("")+`</div></div>`).join("")+`</div>`}
+  if(p.t==="pie"){const tot=p.items.reduce((a,x)=>a+x[1],0);const C=2*Math.PI*36;let off=0;
+    const arcs=p.items.map(([l,v],i)=>{const len=v/tot*C;const s=`<circle r="36" cx="55" cy="55" fill="none" stroke="${col(l,i)}" stroke-width="22" stroke-dasharray="${len} ${C-len}" stroke-dashoffset="${-off}" transform="rotate(-90 55 55)"/>`;off+=len;return s}).join("");
+    return t+`<div class="pie"><svg viewBox="0 0 110 110" role="img" aria-label="${esc(p.title)}">${arcs}</svg><ul>`+p.items.map(([l,v],i)=>`<li><i style="background:${col(l,i)}"></i><span>${esc(l)}</span><b>${fmtv(v,"%")}</b></li>`).join("")+`</ul></div>`}
+  if(p.t==="line"){const W=300,H=150,pl=20,pr=20,pt=26,pb=26;const mx=Math.max(...p.items.map(x=>x[1]))*1.15;const n=p.items.length;
+    const X=i=>n===1?W/2:pl+i*(W-pl-pr)/(n-1);const Y=v=>pt+(H-pt-pb)*(1-v/mx);
+    const pts=p.items.map((x,i)=>`${X(i)},${Y(x[1])}`).join(" ");
+    return t+`<div class="line"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(p.title)}"><line x1="${pl}" x2="${W-pr}" y1="${H-pb}" y2="${H-pb}" stroke="var(--rule)"/><polyline points="${pts}" fill="none" stroke="var(--s2)" stroke-width="2.5"/>`+
+      p.items.map((x,i)=>`<circle cx="${X(i)}" cy="${Y(x[1])}" r="4.5" fill="var(--sheet)" stroke="var(--s2)" stroke-width="2.5"/><text x="${X(i)}" y="${Y(x[1])-10}" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)">${esc(x[2]||fmtv(x[1],p.unit))}</text><text x="${X(i)}" y="${H-8}" text-anchor="middle" font-size="11" fill="var(--muted)">${esc(x[0])}</text>`).join("")+`</svg></div>`}
+  if(p.t==="list")return t+`<ul class="plist">`+p.items.map(x=>`<li>${esc(x)}</li>`).join("")+`</ul>`;
+  if(p.t==="table")return t+`<table class="ptab"><thead><tr>`+p.head.map(h=>`<th>${esc(h)}</th>`).join("")+`</tr></thead><tbody>`+p.rows.map(r=>`<tr>`+r.map(c=>`<td>${esc(c)}</td>`).join("")+`</tr>`).join("")+`</tbody></table>`;
+  return t;
+}
+
+/* ================= Memorize templates =================
+   {…} = солих хэсэг (улаан), […] = жишээнд сольсон хэсэг */
+const TPL={
+ intro:{name:"Эхлэл",items:[
+  {n:"① Судалгааг танилцуулах",u:"Судалгаа, харьцуулах график",fr:"{байгууллага}에서 {хэнийг}을/를 대상으로 '{сэдэв}'에 대해 조사하였다.",mn:"… байгууллага …-ыг хамруулан «…» сэдвээр судалгаа хийсэн.",ex:"[결혼문화연구소]에서 [20대 이상 성인 남녀 3,000명]을 대상으로 '[아이를 꼭 낳아야 하는가]'에 대해 조사하였다."},
+  {n:"② Өөрчлөлтийг эхлэх",u:"Он жилээр өсөх, буурах график",fr:"최근 {сэдэв}이/가 꾸준히 {증가/감소}하고 있다.",mn:"Сүүлийн үед … тогтмол өсөж (буурч) байна.",ex:"최근 [한국 사회에서 1인 가구]가 꾸준히 [증가]하고 있다."},
+  {n:"③ Ангилал, давуу/сул тал",u:"Хүснэгт, ангилал",fr:"{сэдэв}은/는 크게 {A}, {B}, {C}의 세 가지로 나눌 수 있다.",mn:"… нь ерөнхийдөө A, B, C гэсэн гурван төрөлд хуваагдана.",ex:"[대중매체]는 크게 [인쇄매체], [전파매체], [통신매체]의 세 가지로 나눌 수 있다."}]},
+ body:{name:"Гол хэсэг",items:[
+  {n:"① Эрэмбэлж харьцуулах",u:"Хоёр бүлгийн судалгаа",fr:"그 결과 {бүлэг А}은/는 '{зүйл}'이/가 {N}%로 가장 높았고, '{зүйл}'이/가 {N}%로 그 뒤를 이었다. 반면 {бүлэг Б}은/는 '{зүйл}'이/가 {N}%로 가장 높게 나타났다.",mn:"А бүлэгт … хамгийн өндөр, … удаалсан. Харин Б бүлэгт … хамгийн өндөр.",ex:"그 결과 [교사]는 '[책 많이 읽기]'가 [45]%로 가장 높았고, '[좋은 글 따라 쓰기]'가 [30]%로 그 뒤를 이었다. 반면 [학생]은 '[다양한 주제로 연습하기]'가 [65]%로 가장 높게 나타났다."},
+  {n:"② Өсөлт, бууралтыг тайлбарлах",u:"Он жилээр өөрчлөгдөх график",fr:"{сэдэв}은/는 {он}년 {тоо}에서 {он}년 {тоо}(으)로 {хугацаа} 사이에 약 {N}배 {증가/감소}하였다.",mn:"… нь …онд …-аас …онд … болж, … жилийн дотор ойролцоогоор … дахин өссөн (буурсан).",ex:"[인주시의 자전거 이용자 수]는 [2007]년 [4만 명]에서 [2017]년 [21만 명]으로 [10년] 사이에 약 [5]배 [증가]하였다."},
+  {n:"③ Шалтгаан, төрлийг жагсаах",u:"Шалтгаан, хүснэгт",fr:"이러한 {변화/증가}의 원인은 다음과 같다. 먼저 {шалтгаан 1}. 다음으로 {шалтгаан 2}. 마지막으로 {шалтгаан 3}도 영향을 미쳤다.",mn:"Энэ өөрчлөлтийн шалтгаан нь: нэгдүгээрт …, дараа нь …, эцэст нь … нөлөөлсөн.",ex:"이러한 [증가]의 원인은 다음과 같다. 먼저 [결혼관이 변화하면서 독신이 늘어났다]. 다음으로 [노인 인구가 증가하였다]. 마지막으로 [여성의 사회 진출]도 영향을 미쳤다."}]},
+ end:{name:"Дүгнэлт",items:[
+  {n:"① Үр дүнг нэгтгэх",u:"Харьцуулах график (хамгийн түгээмэл)",fr:"이를 통해 {бүлэг}은/는 {гол санаа}다는 것을 알 수 있다.",mn:"Үүнээс … нь … гэдгийг харж болно.",ex:"이를 통해 [30대는 문화생활을, 60대는 건강을 더 중요하게 생각한]다는 것을 알 수 있다."},
+  {n:"② Цаашдын төлөв",u:"Өсөлт, бууралтын график",fr:"이러한 추세가 계속된다면 앞으로도 {сэдэв}은/는 계속 {증가/감소}할 것으로 전망된다.",mn:"Энэ хандлага үргэлжилбэл цаашид ч … өсөх (буурах) төлөвтэй.",ex:"이러한 추세가 계속된다면 앞으로도 [1인 가구]는 계속 [증가]할 것으로 전망된다."},
+  {n:"③ Шийдэл санал болгох",u:"Давуу/сул тал, асуудал",fr:"따라서 {зорилго}기 위해서는 {арга}아/어야 할 것이다.",mn:"Тиймээс …-ын тулд … хэрэгтэй.",ex:"따라서 [인터넷을 잘 이용하]기 위해서는 [정보가 사실인지 확인하는 습관을 가져]야 할 것이다."}]}
+};
+const COMBO=[["Эхлэл ①","'글쓰기 능력을 향상시키는 방법'에 대해 교사와 학생 각각 300명을 대상으로 조사하였다."],["Гол хэсэг ①","그 결과 교사는 '책 많이 읽기'가 45%로 가장 높았고, '좋은 글 따라 쓰기'가 30%로 그 뒤를 이었다. 반면 학생은 '다양한 주제로 연습하기'가 65%로 가장 높게 나타났으며 '좋은 글 따라 쓰기'는 10%에 불과했다."],["Дүгнэлт ①","이를 통해 교사는 독서를, 학생은 직접 써 보는 연습을 더 중요하게 생각한다는 것을 알 수 있다."]];
+let tplTab="intro";
+function tplMark(s,cls){return esc(s).replace(cls==="slot"?/\{(.*?)\}/g:/\[(.*?)\]/g,(m,x)=>`<span class="${cls}">${x}</span>`)}
+function renderTpl(){
+  const tabs=$("tplTabs");tabs.innerHTML="";
+  Object.entries(TPL).forEach(([k,g])=>{const b=document.createElement("button");b.className="tab";b.type="button";b.setAttribute("role","tab");b.setAttribute("aria-pressed",String(tplTab===k));b.textContent=`${g.name} (3)`;b.onclick=()=>{tplTab=k;renderTpl()};tabs.appendChild(b)});
+  const box=$("tplCards");box.innerHTML="";
+  TPL[tplTab].items.forEach(it=>{const d=document.createElement("div");d.className="tcard";
+    d.innerHTML=`<div class="th"><span class="tn">${esc(it.n)}</span></div><span class="tu">${esc(it.u)}</span><div class="fr" lang="ko">${tplMark(it.fr,"slot")}</div><span class="mn">${esc(it.mn)}</span><div class="ex" lang="ko">${tplMark(it.ex,"fill")}</div><button class="cbtn" type="button">Загварыг хуулах</button>`;
+    const fr=d.querySelector(".fr");fr.addEventListener("click",()=>{if($("tpl").classList.contains("quiz"))fr.classList.toggle("show")});
+    const cb=d.querySelector(".cbtn");cb.onclick=()=>{const t=it.fr.replace(/\{(.*?)\}/g,"( $1 )");try{navigator.clipboard.writeText(t).then(()=>{cb.textContent="Хуулагдлаа";setTimeout(()=>cb.textContent="Загварыг хуулах",1500)},()=>{})}catch(e){}};
+    box.appendChild(d)});
+  $("tplCombo").innerHTML=COMBO.map(([l,t])=>`<div class="seg"><span class="sl">${esc(l)}</span><span class="st" lang="ko">${esc(t)}</span></div>`).join("");
+}
+$("tplQuiz").onclick=()=>{const on=!$("tpl").classList.contains("quiz");$("tpl").classList.toggle("quiz",on);$("tplQuiz").setAttribute("aria-pressed",String(on));$("tplQuiz").textContent=on?"Цээжлэх горимоос гарах":"Цээжилснээ шалгах";
+  document.querySelectorAll("#tpl .fr.show").forEach(e=>e.classList.remove("show"))};
+/* ================= Render ================= */
+function renderBank(){$("bank").innerHTML=BANK.map(([t,items])=>`<div class="bankbox"><h3>${esc(t)}</h3><ul>`+items.map(([k,m])=>`<li><b lang="ko">${esc(k)}</b> <span>— ${esc(m)}</span></li>`).join("")+`</ul></div>`).join("")}
+function renderTabs(){const t=$("tabs");t.innerHTML="";[["all","Бүгд"],["trend",TYPEN.trend],["comp",TYPEN.comp],["table",TYPEN.table]].forEach(([v,l])=>{const b=document.createElement("button");b.className="tab";b.type="button";b.textContent=l;b.setAttribute("aria-pressed",String(filter===v));
+  b.onclick=()=>{filter=v;try{localStorage.setItem(KEY+"f",v)}catch(e){}if(!list().includes(Q[cur]))cur=Q.indexOf(list()[0]);renderAll()};t.appendChild(b)})}
+function status(q){const s=S[q.id];if(!s)return "";if(s.checked)return "ok";if(s.a||s.tip)return "wip";return ""}
+function renderGrid(){const g=$("grid");g.innerHTML="";list().forEach(q=>{const b=document.createElement("button");b.className="qbtn";b.type="button";b.setAttribute("aria-current",String(Q[cur]===q));const s=status(q);
+  b.innerHTML=`<span class="k"><span>${esc(q.id)} · ${esc(TYPEN[q.type])}</span><span class="st ${s==="wip"?"wip":""}">${s==="ok"?"✓":s==="wip"?"•":""}</span></span><span class="t" lang="ko"></span>`;b.querySelector(".t").textContent=q.title;
+  b.onclick=()=>{cur=Q.indexOf(q);renderAll();$("qcard").scrollIntoView({behavior:"smooth",block:"start"})};g.appendChild(b)});
+  $("progress").textContent=`${Q.filter(q=>S[q.id]&&S[q.id].checked).length} / ${Q.length} дасгал хийсэн`}
+function renderQ(){
+  const q=Q[cur],L=list(),pos=L.indexOf(q),s=st(q.id);
+  $("qtags").innerHTML=`<span class="tag">53</span><span class="tag g">${esc(TYPEN[q.type])}</span>`;
+  const cmap={};let ci=0;q.panels.filter(p=>p.t==="pie").forEach(p=>p.items.forEach(([l])=>{if(!(l in cmap))cmap[l]=COLORS[ci++%COLORS.length]}));
+  $("qpos").textContent=`${pos+1} / ${L.length}`;$("qtitle").textContent=q.id+". "+q.title;
+  $("qinst").innerHTML=`<b>※</b> `+esc(q.inst).replace(/200~300자/,"<b>200~300자</b>");
+  $("fig").innerHTML=(q.meta.length?`<div class="meta">`+q.meta.map(m=>`<span>● ${esc(m)}</span>`).join("")+`</div>`:"")+`<div class="panels">`+q.panels.map(p=>`<div class="panel" lang="ko">${panelHTML(p,cmap)}</div>`).join("")+`</div>`;
+  $("ans").value=s.a;meter();renderTips();
+  $("prevBtn").disabled=pos<=0;$("nextBtn").disabled=pos>=L.length-1;
+  if(s.checked)renderFB();else $("fbcard").hidden=true;renderTQ();
+}
+function meter(){const n=clen($("ans").value);const f=$("mfill");f.style.width=Math.min(100,n/300*100)+"%";f.className=n>300?"over":n>=200?"ok":"";
+  $("mcount").textContent=`${n} / 200–300자`+(n>300?" · хэтэрсэн":n>=200?" · тохирсон":"")}
+function renderTips(){const q=Q[cur],s=st(q.id),lv=s.tip||0,tl=$("tipList");tl.innerHTML="";tl.hidden=lv===0;
+  if(lv>=1){[["Бүтэц",STRUCT[q.type]],["Энэ графикт",q.tip]].forEach(([h,t])=>{const li=document.createElement("li");li.innerHTML="<b></b> ";li.querySelector("b").textContent=h+":";li.appendChild(document.createTextNode(t));tl.appendChild(li)})}
+  if(lv>=2){const li=document.createElement("li");li.innerHTML="<b>Эхлэх өгүүлбэр:</b> <span class='ko' lang='ko'></span>";li.querySelector(".ko").textContent=q.start;tl.appendChild(li)}
+  const b=$("tipBtn");b.disabled=lv>=2;b.textContent=lv===0?"Тип авах":lv===1?"Эхлэх өгүүлбэр авах":"Бүх тип нээгдсэн";
+  $("tipNote").textContent=lv===0?"Эхлээд графикийг өөрөө уншаад бодоод үз.":lv===1?"Эхлэх өгүүлбэр хэрэгтэй бол дахин дар.":"Эхлэх өгүүлбэрийг хуулахгүй, өөрийнхөөрөө үргэлжлүүлж бичээрэй."}
+
+/* ================= Automatic checks ================= */
+function sentences(t){return t.replace(/\s+/g," ").trim().split(/(?<=[.?!])\s+/).filter(Boolean)}
+function autoCheck(q,txt){
+  const out=[],t=txt.trim(),n=clen(t);
+  if(!t){out.push(["bad","Юу ч бичээгүй байна."]);return out}
+  if(n<200)out.push(["bad",`${n} үсэг байна. Хамгийн багадаа 200 үсэг хэрэгтэй.`]);else if(n>300)out.push(["bad",`${n} үсэг байна. 300-аас хэтрэхгүй.`]);else out.push(["ok",`${n} үсэг · урт тохирсон.`]);
+  if(/(요|니다|니까)[.?!]?(\s|$)/.test(t))out.push(["bad","-요 / -습니다 хэрэглэсэн байна. 53-ыг -다 хэлбэрээр бичнэ."]);
+  if(/(^|\s)(저는|제가|나는|내가|제 생각|내 생각|저의)/.test(t))out.push(["warn","Өөрийн тухай үг (저는, 제 생각에는) байна. 53 бол графикийн бодит тайлбар."]);
+  const lines=t.split(/\r?\n/).filter(x=>x.trim());if(lines.length>1&&lines[0].length<30&&!/[.?!]$/.test(lines[0].trim()))out.push(["warn","Эхний мөр гарчиг шиг харагдаж байна. Гарчиг бичихгүй."]);
+  const hit=q.nums.filter(x=>t.includes(x));
+  if(q.type!=="table"){if(hit.length<Math.ceil(q.nums.length/2))out.push(["warn",`Графикийн гол тоо дутуу байна. Жишээ нь: ${q.nums.filter(x=>!t.includes(x)).slice(0,4).join(", ")}`]);else out.push(["ok","Графикийн гол тоонуудыг ашигласан."])}
+  else if(hit.length<q.nums.length)out.push(["warn",`Хүснэгтийн бүх хэсгийг дурдаагүй байна: ${q.nums.filter(x=>!t.includes(x)).join(", ")}`]);
+  const ss=sentences(t);
+  if(q.type==="comp"&&!/(조사|대상|결과|따르면)/.test(ss[0]||""))out.push(["warn","Эхний өгүүлбэрт судалгааг танилцуул (~을/를 대상으로 조사하였다)."]);
+  if(q.type==="comp"&&!/(반면|에 비해|보다|비교|특히|한편|그러나|하지만|모든|모두|그 뒤를|수록)/.test(t))out.push(["warn","Харьцуулах хэллэг (반면, ~에 비해, ~보다) алга."]);
+  if(q.type==="trend"&&!/(증가|감소|늘|줄|배)/.test(t))out.push(["warn","Өсөлт, бууралтын хэллэг (증가하였다, 늘어났다, ~배) алга."]);
+  if(q.type==="table"&&!/(먼저|다음으로|마지막으로|반면)/.test(t))out.push(["warn","Дарааллын хэллэг (먼저, 다음으로, 마지막으로, 반면) ашигла."]);
+  const last=ss[ss.length-1]||"";if(!/(알 수 있다|전망|예상|보인다|따라서|이처럼|필요하다|해야 한다|조사되었다|나타났다|특징을 가진다|특징이 있다)/.test(last))out.push(["warn","Сүүлийн өгүүлбэрээр дүгнэ (이를 통해 ~다는 것을 알 수 있다)."]);
+  return out;
+}
+function check(){
+  if(!$("stuName").value.trim()){const ni=$("stuName");ni.classList.add("err");$("nameNote").textContent="Эхлээд нэрээ бичнэ үү. Тэгвэл багш таны бичсэнийг харж чадна.";ni.scrollIntoView({behavior:"smooth",block:"center"});ni.focus({preventScroll:true});return}
+  const s=st(Q[cur].id);s.a=$("ans").value;s.checked=true;s.at=new Date().toISOString();save();renderFB();renderGrid();renderSend();pushResult();$("fbcard").scrollIntoView({behavior:"smooth",block:"start"})}
+function renderFB(){
+  const q=Q[cur],s=st(q.id);$("fbcard").hidden=false;
+  $("mine").textContent=s.a.trim()||"(хоосон)";
+  $("chk").innerHTML="";autoCheck(q,s.a).forEach(([c,m])=>{const li=document.createElement("li");li.className=c;li.textContent=(c==="ok"?"✓ ":c==="bad"?"✗ ":"! ")+m;$("chk").appendChild(li)});
+  const ss=sentences(q.model);$("modelH").textContent=`Жишээ хариулт · ${clen(q.model)}자`;
+  $("model").innerHTML=ss.map((x,i)=>`<div class="seg"><span class="sl">${i===0?"Эхлэл":i===ss.length-1?"Дүгнэлт":"Гол хэсэг"}</span><span class="st" lang="ko">${esc(x)}</span></div>`).join("");
+  $("uses").innerHTML=TYPEEXP[q.type].map(([k,m])=>`<span class="use"><b lang="ko">${esc(k)}</b><span>${esc(m)}</span></span>`).join("");
+  $("selfY").setAttribute("aria-pressed",String(s.self==="y"));$("selfN").setAttribute("aria-pressed",String(s.self==="n"));
+}
+$("selfY").onclick=()=>{const s=st(Q[cur].id);s.self=s.self==="y"?"":"y";save();renderFB();schedulePush()};
+$("selfN").onclick=()=>{const s=st(Q[cur].id);s.self=s.self==="n"?"":"n";save();renderFB();schedulePush();$("ans").focus()};
+$("ans").addEventListener("input",()=>{const s=st(Q[cur].id);s.a=$("ans").value;save();meter();renderGrid()});
+$("tipBtn").onclick=()=>{const s=st(Q[cur].id);s.tip=Math.min(2,(s.tip||0)+1);save();renderTips();renderGrid()};
+$("checkBtn").onclick=check;
+$("clearBtn").onclick=()=>{S[Q[cur].id]={a:"",checked:false,self:"",tip:0,at:""};save();renderAll();$("ans").focus()};
+$("prevBtn").onclick=()=>{const L=list(),i=L.indexOf(Q[cur]);if(i>0){cur=Q.indexOf(L[i-1]);renderAll()}};
+$("nextBtn").onclick=()=>{const L=list(),i=L.indexOf(Q[cur]);if(i<L.length-1){cur=Q.indexOf(L[i+1]);renderAll();$("qcard").scrollIntoView({behavior:"smooth",block:"start"})}};
+function renderAll(){renderTabs();renderGrid();renderQ();try{localStorage.setItem(KEY+"c",String(cur))}catch(e){}}
+
+/* ================= Name & sending ================= */
+try{$("stuName").value=localStorage.getItem(KEY+"name")||""}catch(e){}
+$("stuName").addEventListener("input",e=>{e.target.classList.remove("err");$("nameNote").textContent="Багш таны бичсэнийг харахын тулд нэрээ бичнэ үү.";try{localStorage.setItem(KEY+"name",e.target.value)}catch(_){}renderSend();schedulePush()});
+function doneList(){return Q.filter(q=>S[q.id]&&S[q.id].checked)}
+function renderSend(){const name=$("stuName").value.trim()||"(нэр бичээгүй)",L=doneList();
+  const lines=["[TOPIK 53 бичих бэлтгэл]",`Нэр: ${name}`,`Хийсэн дасгал: ${L.length} / ${Q.length}`,""];
+  L.forEach(q=>{const s=S[q.id];lines.push(`${q.id} ${q.title} (${clen(s.a.trim())}자${s.tip?`, тип ${s.tip}`:""})`,s.a.trim()||"(хоосон)","")});
+  $("sendText").textContent=L.length?lines.join("\n"):"Одоогоор «Хариулт харах» дарсан дасгал алга."}
+$("copyBtn").onclick=()=>{const t=$("sendText").textContent;const sel=()=>{const r=document.createRange();r.selectNodeContents($("sendText"));const g=getSelection();g.removeAllRanges();g.addRange(r);$("copyMsg").textContent="Текст сонгогдлоо. Ctrl+C дарж хуулна уу."};
+  try{navigator.clipboard.writeText(t).then(()=>{$("copyMsg").textContent="Хуулагдлаа."},sel)}catch(e){sel()}};
+
+/* ================= Results store (inside Claude only) ================= */
+function compact(){const o={};doneList().forEach(q=>{const s=S[q.id];o[q.id]={a:s.a||"",tip:s.tip||0,self:s.self||"",at:s.at||""}});return o}
+function pushResult(){if(!DB||!UID||canWrite===false)return;const name=$("stuName").value.trim();if(!name||!doneList().length)return;
+  $("sendState").textContent="Хадгалж байна…";
+  chain=chain.then(async()=>{try{await DB.doc("results/"+UID).set({name,updatedAt:new Date().toISOString(),answers:compact()});$("sendState").textContent="Багшид автоматаар хадгалагдлаа ✓";$("sendState").className="note saved"}catch(e){canWrite=false;$("sendState").textContent=""}})}
+function schedulePush(){clearTimeout(pushT);pushT=setTimeout(pushResult,1500)}
+function fmt(iso){const d=new Date(iso);if(isNaN(d))return "";const p=n=>String(n).padStart(2,"0");return `${d.getMonth()+1}/${d.getDate()} ${p(d.getHours())}:${p(d.getMinutes())}`}
+const SELF={y:"✓ Сайн",n:"✎ Дахин"};
+function renderTQ(){if(!DB||$("tqCard").dataset.on!=="1")return;const q=Q[cur],ul=$("tqList");ul.innerHTML="";
+  const rows=ROWS.filter(r=>r.answers&&r.answers[q.id]);$("tqCount").textContent=`${rows.length} шавь`;
+  if(!rows.length){ul.innerHTML='<li><span class="note">Энэ дасгалыг одоогоор хэн ч хийгээгүй байна.</span></li>';return}
+  rows.forEach(r=>{const a=r.answers[q.id];const li=document.createElement("li");li.innerHTML='<div class="row between"><span class="nm"></span><span class="note"></span></div><div class="tx" lang="ko"></div>';
+    li.querySelector(".nm").textContent=String(r.name||"—");li.querySelector(".note").textContent=[fmt(a.at),`${clen(String(a.a||""))}자`,a.tip?`тип ${a.tip}`:"",SELF[a.self]||""].filter(Boolean).join(" · ");
+    li.querySelector(".tx").textContent=String(a.a||"").trim()||"(хоосон)";ul.appendChild(li)})}
+function renderTeacher(){const sel=$("tStudent"),prev=sel.value;sel.innerHTML="";
+  ROWS.forEach(r=>{const o=document.createElement("option");o.value=r.id;o.textContent=`${r.name||"—"} · ${Object.keys(r.answers||{}).length} дасгал · ${fmt(r.updatedAt)}`;sel.appendChild(o)});
+  if(ROWS.some(r=>r.id===prev))sel.value=prev;$("tState").textContent=ROWS.length?`${ROWS.length} шавь`:"Одоогоор бичсэн хүн алга";
+  const tb=$("tBody");tb.innerHTML="";const r=ROWS.find(x=>x.id===sel.value);
+  if(!r){tb.innerHTML='<tr><td colspan="4" class="note">Шавь нар «Хариулт харах» дарахад бичсэн нь энд гарна.</td></tr>';return}
+  Q.filter(q=>r.answers&&r.answers[q.id]).forEach(q=>{const a=r.answers[q.id];const tr=document.createElement("tr");tr.innerHTML="<td></td><td></td><td lang='ko'></td><td></td>";const c=tr.children;
+    c[0].textContent=q.id;c[1].textContent=clen(String(a.a||""));c[2].textContent=String(a.a||"").trim()||"(хоосон)";c[3].textContent=SELF[a.self]||"–";tb.appendChild(tr)})}
+$("tStudent").addEventListener("change",renderTeacher);
+function startTeacher(){$("teacher").hidden=false;$("tqCard").hidden=false;$("tqCard").dataset.on="1";
+  const timer=setTimeout(()=>{$("tState").textContent="Өгөгдөлд холбогдож чадахгүй байна…"},10000);
+  DB.collection("results").onSnapshot(snap=>{if(!snap.metadata.fromCache)clearTimeout(timer);
+    ROWS=snap.docs.map(d=>Object.assign({id:d.id},d.data())).filter(r=>r&&r.answers).sort((a,b)=>String(b.updatedAt).localeCompare(String(a.updatedAt)));renderTeacher();renderTQ()},
+    ()=>{clearTimeout(timer);$("tState").textContent="Ачаалж чадсангүй."})}
+async function initCaps(){if(!(window.claude&&window.claude.use))return;
+  try{const user=await window.claude.use("user");DB=await window.claude.use("db");if(!DB||!user){DB=null;return}
+    UID=await user.id();canWrite=await user.can("data.write");
+    if((await user.isOwner())||(await user.canEdit()))startTeacher();
+    if(canWrite!==false&&UID)pushResult()}catch(e){DB=null}}
+
+renderTpl();renderBank();if(!list().includes(Q[cur]))cur=Q.indexOf(list()[0]);renderAll();renderSend();initCaps();
+})();
+</script>
+
+</body></html>
